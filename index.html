@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        
+<style>
+
+.cube {
+    width: 180px;
+    height: 280px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    transform: rotateX(-90deg) rotateY(-140deg);
+    animation: rotate linear 15s infinite;
+	margin-top: 15%;
+}
+@-webkit-keyframes rotate {
+    from {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+    to {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
+.cube div {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    opacity: 0.8;
+    transition: all .4s;
+}
+.cube .out_front {
+    transform: rotateY(0deg) translateZ(90px);
+}
+.cube .out_back {
+    transform: translateZ(-90px) rotateY(180deg);
+}
+.cube .out_left {
+    transform: rotateY(-90deg) translateZ(90px);
+}
+.cube .out_right {
+    transform: rotateY(90deg) translateZ(90px);
+}
+.cube .out_top {
+    transform: rotateX(90deg) translateZ(90px);
+}
+.cube .out_bottom {
+    transform: rotateX(-90deg) translateZ(90px);
+}
+
+.cube_img {
+    width: 180px;
+    height: 180px;
+}
+.selectCls {
+    float: right;
+}
+</style>
+  
+
+
+</head>
+<body>
+<input type="text" id="inputImageSrc"/><button class="btn" onclick="updateValue()">change</button>
+<div>
+	<select class="selectCls">
+	  <option>Select Size</option>
+	  <option>90</option>
+	  <option>150</option>
+	  <option>210</option>
+	</select>
+</div>
+
+<div class="cube">
+        <div class="out_front"><img class="cube_img" src="https://images.pexels.com/photos/5011647/pexels-photo-5011647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="pic"></div>
+        <div class="out_back"><img class="cube_img" src="https://images.pexels.com/photos/5011647/pexels-photo-5011647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="pic"></div>
+        <div class="out_left"><img class="cube_img" src="https://images.pexels.com/photos/5011647/pexels-photo-5011647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="pic"></div>
+        <div class="out_right"><img class="cube_img" src="https://images.pexels.com/photos/5011647/pexels-photo-5011647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="pic"></div>
+        <div class="out_top"><img class="cube_img" src="https://images.pexels.com/photos/5011647/pexels-photo-5011647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="pic"></div>
+        <div class="out_bottom"><img class="cube_img" src="https://images.pexels.com/photos/5011647/pexels-photo-5011647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="pic">
+        </div>
+    </div>
+</body>
+
+<script>
+
+		$(document).ready(function() {
+		
+		
+		//haibabi 這是cube 換圖片的JavaScript
+		function updateValue() {
+		let input = document.getElementById('inputImageSrc');
+			$('img').each(function(){
+				$(this).attr('src',input.value);
+			});
+		}
+		
+		
+		// 這是換size的JavaScript
+		$('.selectCls').change(function(){
+		  var data= $(this).val();
+		  $(".cube .out_front").css("transform", "rotateY(0deg) translateZ("+ data +"px)");
+		  $(".cube .out_back").css("transform", "translateZ(-"+ data +"px) rotateY(180deg) ");
+		  $(".cube .out_left").css("transform", "rotateY(-90deg) translateZ("+ data +"px)");
+		  $(".cube .out_right").css("transform", "rotateY(90deg) translateZ("+ data +"px)");
+		  $(".cube .out_top").css("transform", "rotateX(90deg) translateZ("+ data +"px)");
+		  $(".cube .out_bottom").css("transform", "rotateX(-90deg) translateZ("+ data +"px)");
+
+		  let sizeCube = data*2;
+		  $(".cube_img").css({"width":"" + sizeCube + "px","height":"" + sizeCube + "px"});
+		  $(".cube div").css({"width":"" + sizeCube + "px","height":"" + sizeCube + "px"});
+
+           
+			});
+		});
+		
+</script>
+</html>

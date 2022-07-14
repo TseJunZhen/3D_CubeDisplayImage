@@ -27,7 +27,7 @@
     position: absolute;
     width: 180px;
     height: 180px;
-    opacity: 0.8;
+    opacity: 1;
     transition: all .4s;
 }
 .cube .out_front {
@@ -66,6 +66,7 @@
 <div>
 	<select class="selectCls">
 	  <option>Select Size</option>
+	  <option>60</option>
 	  <option>90</option>
 	  <option>150</option>
 	  <option>210</option>
@@ -84,10 +85,6 @@
 </body>
 
 <script>
-
-		$(document).ready(function() {
-		
-		
 		//haibabi 這是cube 換圖片的JavaScript
 		function updateValue() {
 		let input = document.getElementById('inputImageSrc');
@@ -95,8 +92,8 @@
 				$(this).attr('src',input.value);
 			});
 		}
-		
-		
+
+		$(document).ready(function() {
 		// 這是換size的JavaScript
 		$('.selectCls').change(function(){
 		  var data= $(this).val();
